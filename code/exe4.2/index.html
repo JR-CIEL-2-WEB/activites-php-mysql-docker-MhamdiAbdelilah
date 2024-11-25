@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <header>
+
+    </header>
+    <body>
+        <h1>tri selection</h1>
+        <h3>saisie element du tableau</h3>
+        <h4>envoie du tableau via ajax</h4>
+        <h4 id="response"></h4>
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        let a = []
+        let nbr =0
+        do {
+            nbr =Number(prompt('saisses un nombre > 0')); 
+            a.push(nbr) ;
+        } while (nbr>0);
+        $.ajax({
+            url: `main.php?list=[${a}]`,
+            type: 'GET',
+            success: function(response) {
+            // the respone of php here   
+            let htmlH4 = document.getElementById('response');
+            htmlH4.innerHTML = response;
+            }
+        })
+    </script>
+</html>

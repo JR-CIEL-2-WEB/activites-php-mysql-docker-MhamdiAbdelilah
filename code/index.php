@@ -1,5 +1,4 @@
 <?php
-
 echo "<p>Bonjour !</p>";
 
 $servername = "mysql";
