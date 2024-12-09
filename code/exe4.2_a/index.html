@@ -19,12 +19,13 @@
             a.push(nbr) ;
         } while (nbr>0);
         $.ajax({
-            url: `main.php?list=[${a}]`,
+            url: `https://fc8b32e8-910c-4510-908c-6b2b295cad73.mock.pstmn.io?list=[1,2,3,4,5]`,
             type: 'GET',
             success: function(response) {
             // the respone of php here   
+            response = JSON.parse(response);
             let htmlH4 = document.getElementById('response');
-            htmlH4.innerHTML = response;
+            htmlH4.innerHTML = `mediane = ${response.median}`;
             }
         })
     </script>
