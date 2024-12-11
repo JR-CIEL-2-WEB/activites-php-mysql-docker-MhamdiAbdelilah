@@ -8,12 +8,11 @@ cord = { lat: 48.960488945948185, lng: 2.5478907124310757 }
 async function initMap(couse = 0) {
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   $.ajax({
-    url: 'cours.json', // URL to send the request to
+    url: `cours.php?coursId=${couse}`, // URL to send the request to
     type: 'GET', // HTTP method (GET, POST, etc.)
     dataType: 'json', // Expected data format from the server
     success: function (data) {
-      //console.log(data);
-      data = data[couse]
+      
       // init map
       const map = new Map(document.getElementById("map"), {
         zoom: data["zoom"],
