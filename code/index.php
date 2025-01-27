@@ -3,7 +3,7 @@ echo "<p>Bonjour !</p>";
 
 $servername = "mysql";
 $username = "user";
-$password = "password";
+$mpassword = "password";
 $dbname = "appdb";
 
 try {

@@ -4,6 +4,7 @@ echo "<h1>Median Salary</h1>";
 if (file_exists("config.php") && file_exists("mediane.php")) {
     include "config.php";
     include "mediane.php";
+    include "moyenne.php";
 } else {
     die("Required files are missing.");
 }
@@ -18,19 +19,26 @@ if (file_exists("config.php") && file_exists("mediane.php")) {
     <form method="post" action="">
         <button type="submit" name="calculate_median">Calculate Median Salary</button>
     </form>
+    <form method="post" action="">
+        <button type="submit" name="calculate_moyenne">Calculate moyenne Salary</button>
+    </form>
 
     <?php
     if (isset($_POST['calculate_median'])) {
         $query = "SELECT salary FROM employees ORDER BY salary";
-        $result = mysqli_query($conn, $query);
-        $salaries = [];
-
-        while ($row = mysqli_fetch_assoc($result)) {
-            $salaries[] = $row['salary'];
-        }
-
+        $result = $connexion->query($query);
+        $salaries = $result->fetchAll(PDO::FETCH_COLUMN);
+    
         $median_salary = mediane($salaries);
-        echo "<p>Median Salary: $median_salary</p>";
+        echo "<p>Median salaire: $median_salary</p>";
+    }
+    if (isset($_POST['calculate_moyenne'])) {    
+        $query = "SELECT salary FROM employees";
+        $result = $connexion->query($query);
+        $salaries = $result->fetchAll(PDO::FETCH_COLUMN);
+    
+        $average_salary = moyenne($salaries);
+        echo "<p>Moyenne salaire: $average_salary</p>";
     }
     ?>
 </body>

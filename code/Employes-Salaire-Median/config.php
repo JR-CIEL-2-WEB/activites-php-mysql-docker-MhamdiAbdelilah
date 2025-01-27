@@ -1,18 +1,18 @@
-<?php 
-
-$servername = "127.0.0.1:3306";
-$username = "eleve";
-$password = "n>]2y&CM:BB7e%r";
-$dbname = "appdb"; 
+<?php
+$servername = "mysql";
+$port = 3306;
+$username = "root";
+$password = "root";
+$dbname = "appdb";
 
 try {
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
-    }
-} catch (Exception $e) {
-    die($e->getMessage());
+    $connexion = new PDO(
+        "mysql:host=$servername;port=$port;dbname=$dbname",
+        $username,
+        $password
+    );
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
 ?>
